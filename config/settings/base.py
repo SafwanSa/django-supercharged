@@ -10,11 +10,12 @@ ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 APPS_DIR = ROOT_DIR / "apps"
 env = environ.Env()
 
-READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True) # False is better
+READ_DOT_ENV_FILE = env.bool(
+    "DJANGO_READ_DOT_ENV_FILE", default=True)  # False is better
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
     env.read_env(str(ROOT_DIR / ".env"))
-    
+
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -78,7 +79,8 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "apps.user",
-    "apps.utilities"
+    "apps.utilities",
+    "apps.notifications"
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -116,7 +118,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-        # "django.middleware.common.BrokenLinkEmailsMiddleware",
+    # "django.middleware.common.BrokenLinkEmailsMiddleware",
 ]
 
 # STATIC
@@ -215,7 +217,6 @@ LOGGING = {
     },
     "root": {"level": "INFO", "handlers": ["console"]},
 }
-
 
 
 # django-rest-framework
