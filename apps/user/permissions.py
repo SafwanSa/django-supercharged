@@ -1,6 +1,8 @@
 from rest_framework.permissions import BasePermission
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
+
 from .models import *
+
 
 class UserAccountAccess(BasePermission):
     message = _("You don't have access to this account")
