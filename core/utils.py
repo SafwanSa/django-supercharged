@@ -6,6 +6,7 @@ import math
 import random
 from django.urls import reverse
 from django.utils.html import format_html
+from django.conf import settings
 
 
 class RandomFileName(object):
@@ -34,13 +35,13 @@ class PathAndRename(object):
         return os.path.join(self.path, filename)
 
 
-def generate_token(user_id) -> str:
+def generate_token(id: int, hours_expiry: int, type: str) -> str:
     payload = {
-        "token_type": "verify",
-        "exp": (datetime.now() + timedelta(hours=48)).timestamp(),
-        "user_id": user_id
+        "token_type": type,
+        "exp": (datetime.now() + timedelta(hours=hours_expiry)).timestamp(),
+        "user_id": id
     }
-    return jwt.encode(payload, "{{project_name}}", algorithm="HS256")
+    return jwt.encode(payload, f"{settings.SECRET_KEY}", algorithm="HS256")
 
 
 def generate_otp() -> str:
