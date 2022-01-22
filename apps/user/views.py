@@ -14,8 +14,3 @@ class UserView(ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     description = "This endpoint return the list of users"
-
-
-class V(APIView):
-    def get(self, request):
-        raise APIError(Error.DEFAULT)
