@@ -1,4 +1,4 @@
-"""djsaf URL Configuration
+"""{{project_name}} URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -23,11 +23,11 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Djsaf API",
+        title="{{project_name}} API",
         default_version='v1',
         description="Test description",
         terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="contact@Djsaf.local"),
+        contact=openapi.Contact(email="contact@{{project_name}}.local"),
         license=openapi.License(name="BSD License"),
     ),
     public=True,

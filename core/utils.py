@@ -8,7 +8,6 @@ from django.urls import reverse
 from django.utils.html import format_html
 
 
-
 class RandomFileName(object):
     """
         Random file names for user generated contents
@@ -20,7 +19,6 @@ class RandomFileName(object):
     def __call__(self, _, filename):
         extension = os.path.splitext(filename)[1]
         return self.path % (uuid.uuid4(), extension)
-
 
 
 class PathAndRename(object):
@@ -36,15 +34,13 @@ class PathAndRename(object):
         return os.path.join(self.path, filename)
 
 
-
 def generate_token(user_id) -> str:
     payload = {
         "token_type": "verify",
         "exp": (datetime.now() + timedelta(hours=48)).timestamp(),
         "user_id": user_id
     }
-    return jwt.encode(payload, "djsaf", algorithm="HS256")
-
+    return jwt.encode(payload, "{{project_name}}", algorithm="HS256")
 
 
 def generate_otp() -> str:
