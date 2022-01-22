@@ -61,7 +61,7 @@ def to_string(_list: list) -> str:
     return '[' + ','.join(_list) + ']'
 
 
-def linkify(field_name):
+def linkify_field(field_name) -> str:
     """
     Converts a foreign key value into clickable links.
 
@@ -82,8 +82,12 @@ def linkify(field_name):
     return _linkify
 
 
-def general_linkify(obj):
-    linked_obj = obj
+def linkify_instance(instance) -> str:
+    """
+    Converts an object into clickable links.
+    Link will be admin url for the admin url for obj.parent.id:change
+    """
+    linked_obj = instance
     if linked_obj is None:
         return '-'
     app_label = linked_obj._meta.app_label
