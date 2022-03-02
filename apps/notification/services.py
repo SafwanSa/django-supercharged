@@ -1,7 +1,7 @@
 from .models import *
 from . import queries
 from enum import Enum
-from apps.utilities.services import ConfigService as Conf
+from apps.utility.services import ConfigService as Conf
 from django.core.mail import EmailMultiAlternatives
 import json
 from django.template.loader import get_template

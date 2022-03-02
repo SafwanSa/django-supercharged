@@ -79,8 +79,8 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "apps.account",
-    "apps.utilities",
-    "apps.notifications"
+    "apps.utility",
+    "apps.notification"
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

@@ -7,9 +7,7 @@ from core.validators import _PHONE_REGEX
 
 
 class GroupEnum(Enum):
-    Customer = 'Customer'
     Admin = 'Admin'
-    Operation = 'Operation'
 
 
 class User(AbstractUser):

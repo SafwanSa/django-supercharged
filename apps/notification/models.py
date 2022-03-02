@@ -1,5 +1,5 @@
 from django.db import models
-from apps.utilities.models import BaseModel
+from apps.utility.models import BaseModel
 
 # from pyfcm import FCMNotification
 # from account.models import CustomUser, FCMToken
