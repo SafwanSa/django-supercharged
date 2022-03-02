@@ -4,4 +4,17 @@ from .models import *
 
 @admin.register(Notification)
 class NotificationAdmin(admin.ModelAdmin):
-    pass
+    model = Notification
+    list_display = [
+        'receivers',
+        'created_at',
+        'title',
+        'body'
+    ]
+    list_filter = [
+        'type',
+        'created_at'
+    ]
+    search_fields = [
+        'receivers'
+    ]
