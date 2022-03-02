@@ -19,7 +19,7 @@ class ApplicationError(Exception):
 
 def custom_exception_handler(exc, ctx):
     if isinstance(exc, DjangoValidationError):
-        exc = exceptions.ValidationError(exc.message)
+        exc = exceptions.ValidationError(exc.messages)
 
     if isinstance(exc, Http404):
         exc = exceptions.NotFound()
@@ -35,7 +35,8 @@ def custom_exception_handler(exc, ctx):
 
     if isinstance(exc.detail, list):
         code = exc.detail[0].code
-
+        if code is 'invalid':
+            code = 0
         response.data = {
             "error": {
                 "code": code,
@@ -58,7 +59,7 @@ def custom_exception_handler(exc, ctx):
                         message = str(f'{value}:{exc.detail[value][0]}')
                     messages.append(message)
             code = 0
-        except:
+        except BaseException:
             code = -403
             messages = [exc.detail]
         response.data = {
