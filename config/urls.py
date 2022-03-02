@@ -38,8 +38,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     # path('auth/', include('djoser.urls')),
     # path('auth/', include('djoser.urls.jwt')),
-    path('auth/', include('apps.dauth.urls')),
-    path('users/', include('apps.user.urls')),
+    path('auth/', include('apps.account.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('admin/', admin.site.urls),
 ]
