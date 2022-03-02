@@ -107,7 +107,9 @@ class NotificationService:
         receivers_list = receivers.split(',')
         receivers_list = [
             mobile for mobile in receivers_list if is_valid(mobile)]
-
+        # Integrate here with any SMS provider
+        # NOTE u have to return the response of the request
+        """
         url = 'http://basic.unifonic.com/rest/SMS/messages'
         arr_data = {
             'AppSid': settings.UNIFONIC_APPSID,
@@ -118,3 +120,4 @@ class NotificationService:
         data = urllib.parse.urlencode(arr_data).encode('utf-8')
         response = urllib.request.urlopen(url=url, data=data)
         return response.read()
+        """
