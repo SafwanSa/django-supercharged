@@ -78,8 +78,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "apps.dauth",
-    "apps.user",
+    "apps.account",
     "apps.utilities",
     "apps.notifications"
 ]
@@ -94,7 +93,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 #     "allauth.account.auth_backends.AuthenticationBackend",
 # ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
-AUTH_USER_MODEL = "user.User"
+AUTH_USER_MODEL = "account.User"
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
