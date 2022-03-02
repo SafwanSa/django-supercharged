@@ -17,6 +17,13 @@ class UserView(ListAPIView):
     description = "This endpoint return the list of users"
 
 
+class ExampleErrorView(APIView):
+
+    def get(self, request):
+        raise APIError(Error._DEFAULT_MESSAGE, extra=['This is a default error message. Wehoo!'])
+        return Response({})
+
+
 class CustomTokenObtainPairView(TokenObtainPairView):
     def post(self, request):
         serializer = CustomTokenObtainPairSerializer(data=request.data)

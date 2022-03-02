@@ -1,4 +1,4 @@
-GET http://localhost:8000/auth/ HTTP/1.1
+GET http://localhost:8000/auth/error/ HTTP/1.1
 content-type: application/json
 
 {
