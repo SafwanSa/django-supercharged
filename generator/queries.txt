@@ -1,0 +1,17 @@
+from .models import *
+from django.db.models import Q
+from typing import Iterable
+from core.errors import Error, APIError
+{loop}
+def get_{{model_verbose}}s() -> Iterable[{{model_name}}]:
+    return {{model_name}}.objects.all()
+
+def get_{{model_verbose}}_by_id(id=int, with_deleted=False) -> {{model_name}}:
+    try:
+        if with_deleted:
+            return {{model_name}}.objects_with_deleted.get(id=id)
+        else:
+            return {{model_name}}.objects.get(id=id)
+    except {{model_name}}.DoesNotExist:
+        raise APIError(Error.INSTANCE_NOT_FOUND, extra=[{{model_name}}._meta.model_name])
+{endloop}
