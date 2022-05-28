@@ -13,6 +13,16 @@ def show_required_apps(command: BaseCommand) -> None:
     return
 
 
+def show_required_models(command: BaseCommand, app: any) -> None:
+    models = app.get_models()
+    app_name = app.name.split('.')[1]
+    command.stderr.write(f'This command requires an existing model of {app_name} app')
+    command.stderr.write(f'Available models for {app_name} app:')
+    for model in models:
+        command.stderr.write('    %s' % model._meta.model_name)
+    return
+
+
 def generate_file(app_name: str, source: str) -> None:
     app_models = apps.get_app_config(app_name).get_models()
     path = f"{Path(__file__).parent}/file_generator_templates/{source}.txt"
