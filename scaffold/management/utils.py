@@ -1,11 +1,22 @@
+from pathlib import Path
+from django.core.management.base import BaseCommand
+from django.conf import settings
+from django.apps import apps
 
-import os
-import django
-import sys
+
+def show_required_apps(command: BaseCommand) -> None:
+    command.stderr.write('This command requires an existing app name as argument')
+    command.stderr.write('Available apps:')
+    app_labels = settings.LOCAL_APPS
+    for label in sorted(app_labels):
+        command.stderr.write('    %s' % label)
+    return
 
 
-def generate_file(app_name: str, app_models: any, source: str) -> None:
-    file = open(f'generator/{source}.txt', 'r')
+def generate_file(app_name: str, source: str) -> None:
+    app_models = apps.get_app_config(app_name).get_models()
+    path = f"{Path(__file__).parent}/file_generator_templates/{source}.txt"
+    file = open(path, 'r')
     content = file.readlines()
     file.close()
     file = open(f'apps/{app_name}/{source}.py', 'w')
@@ -31,23 +42,3 @@ def generate_file(app_name: str, app_models: any, source: str) -> None:
                 content.remove(line)
         content = list(temp_content)
     file.close()
-
-
-def main():
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
-    django.setup()
-    from django.apps import apps
-    try:
-        app_name = sys.argv[1]
-    except IndexError:
-        print('Error. You have to provide the app name')
-        sys.exit(1)
-    app_models = apps.get_app_config(app_name).get_models()
-    generate_file(app_name=app_name, app_models=app_models, source='serializer')
-    app_models = apps.get_app_config(app_name).get_models()
-    generate_file(app_name=app_name, app_models=app_models, source='queries')
-    generate_file(app_name=app_name, app_models=app_models, source='services')
-
-
-if __name__ == '__main__':
-    main()

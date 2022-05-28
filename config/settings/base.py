@@ -73,8 +73,12 @@ LOCAL_APPS = [
     "apps.utility",
     "apps.notification"
 ]
+
+OTHER_APPS = [
+    "scaffold",
+]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + OTHER_APPS
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
