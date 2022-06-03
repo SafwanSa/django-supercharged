@@ -10,11 +10,12 @@ from django.db.models.base import ModelBase
 class Command(BaseCommand):
     help = 'Registers a custom admin for a desired model'
 
-    def register_model(self, model: ModelBase):
+    def register_model(self, app_name: str, model: ModelBase):
         # Open the admin.py
+        file = open(f'apps/{app_name}/admin.py', 'r')
+        file.write()
+        file.close()
         # Write the custom admin
-        print(model._meta.model_name)
-        print(type(model))
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -42,7 +43,7 @@ class Command(BaseCommand):
         if _model is None:
             return utils.show_required_models(command=self, app=app)
 
-        self.register_model(model=model)
+        self.register_model(app_name=app_name, model=model)
 
         result = app_model
         self.stdout.write(self.style.SUCCESS(result))

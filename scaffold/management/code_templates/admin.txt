@@ -1,0 +1,15 @@
+class {{model_name}}Admin(admin.ModelAdmin):
+    model = {{model_name}}
+    list_display = [
+        'receivers',
+        'created_at',
+        'title',
+        'body'
+    ]
+    list_filter = [
+        'type',
+        'created_at'
+    ]
+    search_fields = [
+        'receivers'
+    ]
