@@ -9,10 +9,11 @@ from .models import *
 from django.utils.translation import gettext_lazy as _
 from core.errors import Error, APIError
 from rest_framework.pagination import PageNumberPagination
+from core.queries import BaseQuery
 
 
 class UserView(ListAPIView):
-    queryset = User.objects.all()
+    queryset = BaseQuery.get_all_instances(model=User)
     serializer_class = UserSerializer
     description = "This endpoint return the list of users"
 
