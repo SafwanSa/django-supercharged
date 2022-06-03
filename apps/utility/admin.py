@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import *
 from .admin_forms import ConfigAdminForm
 from apps.account.models import GroupEnum
+from core.admin import BaseAdmin
 
 
 class ConfigAdmin(admin.ModelAdmin):
