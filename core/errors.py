@@ -7,6 +7,7 @@ from enum import Enum
 class Error(Enum):
     DEFAULT = {"code": -100, "detail": _("Oops!. Something went wrong, please contact us")}
     _DEFAULT_MESSAGE = {"code": -99, "detail": _("Default: {}")}
+    INSTANCE_NOT_FOUND = {'code': -404, 'detail': _('{} not found!')}
 
 
 class APIError(Exception):
